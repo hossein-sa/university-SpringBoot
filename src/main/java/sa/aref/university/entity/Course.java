@@ -1,10 +1,9 @@
 package sa.aref.university.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,4 +19,11 @@ public class Course {
     private String name;
     private String description;
     private int creditHours;
+
+    @ManyToOne
+    @JoinColumn(name = "program_of_study_id", referencedColumnName = "id")
+    private ProgramOfStudy programOfStudy;
+
+    @OneToMany(mappedBy = "course")
+    private List<Enrollment> enrollments;
 }
