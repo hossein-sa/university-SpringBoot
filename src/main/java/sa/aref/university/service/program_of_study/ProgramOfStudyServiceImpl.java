@@ -21,11 +21,6 @@ public class ProgramOfStudyServiceImpl implements ProgramOfStudyService {
     }
 
     @Override
-    public List<ProgramOfStudy> getAllProgramOfStudy() {
-        return programOfStudyRepository.findAll();
-    }
-
-    @Override
     public ProgramOfStudy getProgramOfStudyById(Long id) {
         return programOfStudyRepository.findById(id).orElseThrow(() -> new CustomExceptionNotFound("Program of Study not found"));
     }
@@ -42,5 +37,10 @@ public class ProgramOfStudyServiceImpl implements ProgramOfStudyService {
         ProgramOfStudy existingProgramStudy = programOfStudyRepository.findById(id).orElseThrow(() -> new CustomExceptionNotFound("Program of Study not found"));
         existingProgramStudy.setName(programOfStudy.getName());
         return programOfStudyRepository.save(existingProgramStudy);
+    }
+
+    @Override
+    public List<ProgramOfStudy> getAllProgramsOfStudy() {
+        return programOfStudyRepository.findAll();
     }
 }

@@ -6,8 +6,9 @@ import java.util.List;
 
 public interface ProgramOfStudyService {
     ProgramOfStudy addProgramOfStudy(ProgramOfStudy programOfStudy);
-    List<ProgramOfStudy> getAllProgramOfStudy();
     ProgramOfStudy getProgramOfStudyById(Long id);
     void deleteProgramOfStudy(Long id);
     ProgramOfStudy updateProgramOfStudy(Long id,ProgramOfStudy programOfStudy);
- }
+
+    List<ProgramOfStudy> getAllProgramsOfStudy();
+}
