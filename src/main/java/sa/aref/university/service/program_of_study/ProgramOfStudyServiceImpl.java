@@ -26,10 +26,14 @@ public class ProgramOfStudyServiceImpl implements ProgramOfStudyService {
     }
 
     @Override
-    public void deleteProgramOfStudy(Long id) {
-        ProgramOfStudy programOfStudy = programOfStudyRepository.findById(id).orElseThrow(() -> new CustomExceptionNotFound("Program of Study not found"));
-        programOfStudyRepository.delete(programOfStudy);
+    public boolean deleteProgramOfStudy(Long id) {
 
+        ProgramOfStudy programOfStudy = programOfStudyRepository.findById(id).orElse(null);
+        if (programOfStudy != null) {
+            programOfStudyRepository.delete(programOfStudy);
+            return true;
+        }
+        return false;
     }
 
     @Override

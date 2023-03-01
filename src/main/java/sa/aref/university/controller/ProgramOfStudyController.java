@@ -17,17 +17,16 @@ public class ProgramOfStudyController {
 
     private final ProgramOfStudyService programOfStudyService;
 
-    @Autowired
     public ProgramOfStudyController(ProgramOfStudyService programOfStudyService) {
         this.programOfStudyService = programOfStudyService;
     }
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<ProgramOfStudy> getAllProgramsOfStudy() {
         return programOfStudyService.getAllProgramsOfStudy();
     }
 
-    @PostMapping("")
+    @PostMapping("/add")
     public ProgramOfStudy addProgramOfStudy(@Valid @RequestBody ProgramOfStudy programOfStudy) {
         return programOfStudyService.addProgramOfStudy(programOfStudy);
     }
@@ -36,4 +35,17 @@ public class ProgramOfStudyController {
     public ProgramOfStudy getProgramOfStudyById(@PathVariable Long id) {
         return programOfStudyService.getProgramOfStudyById(id);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteProgramOfStudyById(@PathVariable Long id) {
+        boolean isDeleted = programOfStudyService.deleteProgramOfStudy(id);
+        if (isDeleted) {
+            return ResponseEntity.ok("Program of study with ID " + id + " has been deleted");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Program of study with ID " + id + " was not found");
+        }
+    }
+
+
+
 }

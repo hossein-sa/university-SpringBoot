@@ -7,8 +7,10 @@ import java.util.List;
 public interface ProgramOfStudyService {
     ProgramOfStudy addProgramOfStudy(ProgramOfStudy programOfStudy);
     ProgramOfStudy getProgramOfStudyById(Long id);
-    void deleteProgramOfStudy(Long id);
+    boolean deleteProgramOfStudy(Long id);
     ProgramOfStudy updateProgramOfStudy(Long id,ProgramOfStudy programOfStudy);
 
     List<ProgramOfStudy> getAllProgramsOfStudy();
+
+
 }
