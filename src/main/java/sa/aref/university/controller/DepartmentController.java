@@ -44,5 +44,15 @@ public class DepartmentController {
         }
     }
 
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<String> updateDepartment(@PathVariable Long id, @RequestBody Department department) {
+        department.setId(id);
+        Department updatedDepartment = departmentService.updateDepartment(department);
+        String successMessage = "Department with ID " + id + " has been updated successfully";
+        return ResponseEntity.ok().body(successMessage);
+    }
+
+
+
 
 }

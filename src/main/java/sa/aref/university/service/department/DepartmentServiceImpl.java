@@ -36,11 +36,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department updateDepartment(Department department) {
-        Department existingDepartment = departmentRepository.findById(department.getId()).orElseThrow(() -> new CustomExceptionNotFound("Department not found"));
-            existingDepartment.setName(department.getName());
-            existingDepartment.setDescription(department.getDescription());
-            return departmentRepository.save(existingDepartment);
-        }
+        Department existingDepartment = departmentRepository.findById(department.getId())
+                .orElseThrow(() -> new CustomExceptionNotFound("Department not found"));
+
+        existingDepartment.setName(department.getName());
+        existingDepartment.setDescription(department.getDescription());
+
+        return departmentRepository.save(existingDepartment);
+    }
+
 
     @Override
     public boolean deleteDepartmentById(Long id) {
