@@ -22,25 +22,25 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department createDepartment(Department department) {
-        return departmentRepository.save(department);
-    }
-
-    @Override
     public Department getDepartmentById(Long id) {
         return departmentRepository.findById(id).orElseThrow(() -> new CustomExceptionNotFound("Department not found"));
     }
 
+
+    @Override
+    public Department createDepartment(Department department) {
+        return departmentRepository.save(department);
+    }
+
+
+
     @Override
     public Department updateDepartment(Department department) {
-        Department existingDepartment = departmentRepository.findById(department.getId()).orElse(null);
-        if (existingDepartment != null) {
+        Department existingDepartment = departmentRepository.findById(department.getId()).orElseThrow(() -> new CustomExceptionNotFound("Department not found"));
             existingDepartment.setName(department.getName());
             existingDepartment.setDescription(department.getDescription());
             return departmentRepository.save(existingDepartment);
         }
-        return null;
-    }
 
     @Override
     public boolean deleteDepartmentById(Long id) {

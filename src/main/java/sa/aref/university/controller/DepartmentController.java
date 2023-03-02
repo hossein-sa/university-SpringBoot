@@ -23,6 +23,11 @@ public class DepartmentController {
         return departmentService.getAllDepartments();
     }
 
+    @GetMapping("/{id}")
+    public Department getDepartmentById(@PathVariable Long id) {
+        return departmentService.getDepartmentById(id);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
         Department createDepartment = departmentService.createDepartment(department);
