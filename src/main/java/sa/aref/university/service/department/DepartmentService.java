@@ -13,5 +13,5 @@ public interface DepartmentService {
 
     Department updateDepartment(Department department);
 
-    void deleteDepartmentById(Long id);
+    boolean deleteDepartmentById(Long id);
 }
