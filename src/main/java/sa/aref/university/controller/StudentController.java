@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sa.aref.university.entity.Enrollment;
 import sa.aref.university.entity.Student;
+import sa.aref.university.entity.dto.EnrollStudentDto;
 import sa.aref.university.exception.CustomExceptionNotFound;
 import sa.aref.university.service.student.StudentService;
 
@@ -55,9 +56,9 @@ public class StudentController {
     }
 
     @PostMapping("/{studentId}/enroll")
-    public ResponseEntity<Void> enrollStudent(@PathVariable Long studentId, @RequestParam Long courseId)
+    public ResponseEntity<Void> enrollStudent(@PathVariable Long studentId, @RequestBody EnrollStudentDto enrollStudentDto)
             throws CustomExceptionNotFound {
-        studentService.enrollStudent(studentId, courseId);
+        studentService.enrollStudent(studentId, enrollStudentDto.getCourseId());
         return ResponseEntity.ok().build();
     }
 
